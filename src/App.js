@@ -7,6 +7,7 @@ import RadioButton from "./components/RadioButton";
 import Date from "./components/Date";
 import Time from "./components/Time";
 import Color from "./components/Color";
+import Number from "./components/Number";
 
 
 
@@ -74,7 +75,7 @@ function App() {
         <Register register={register}/>
       }></Route>
       <Route path="/" element = {
-        <Color question={question} answer={answer} options={options}/>
+        <Number question={question} answer={answer} options={options}/>
       }></Route>
     </Routes>
   )
