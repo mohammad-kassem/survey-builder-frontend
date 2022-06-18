@@ -2,9 +2,11 @@ import React from "react";
 import Form from "../components/Form";
 
 
-function Register(){
+function Register({register}){
     return (
-        <Form type = "register"/>
+        <>
+        <Form type = "register" register={register}/>
+        </>
     )
 }
 

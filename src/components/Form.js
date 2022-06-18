@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function Form({type, login}){
+function Form({type, login, register}){
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
     const [email, setEmail] = useState("");
@@ -9,7 +9,7 @@ function Form({type, login}){
 
     function onSubmit(e){
       e.preventDefault();
-      login({email, password});
+      {type === "register" ? register({fname, lname, email, password}) : login({email, password});}
     };
 
     return (
