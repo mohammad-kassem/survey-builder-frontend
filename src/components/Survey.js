@@ -9,15 +9,15 @@ import Number from ".//Number";
 import Range from ".//Range";
 import Dropdown from ".//Dropdown";
 import Image from ".//Image";
+import SurveyHeader from "./SurveyHeader";
+
 
 function Survey({survey}){
     let questions = survey.questions;
-    console.log(questions);
     return(
         <>
-        <h1> {survey.title}</h1>
-        <h1> {survey.description}</h1>
-        <div>
+        <SurveyHeader survey={survey}/>
+        <div className="survey-container">
         {questions.map(question=>(
             question.type === "radiobutton" && <RadioButton question={question} options={question.options}/>
         ))

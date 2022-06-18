@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Survey({survey}){
+function SurveyHeader({survey}){
     return(
         <div className="header-container">
             <h1> {survey.title}</h1>
@@ -9,4 +9,4 @@ function Survey({survey}){
     )
 }
 
-export default Survey;
+export default SurveyHeader;

@@ -3,9 +3,14 @@ import Survey from "./Survey";
 
 function Surveys({surveys}){
     return(
-        surveys.map(survey=>(
-            <Survey survey={survey}/>
-        ))
+        <div className=" surveys-container page-content">
+        
+            {surveys.map(survey=>(
+                <div>
+                <Survey survey={survey}/>
+                </div>
+            ))}
+        </div>
     )
 }
 
