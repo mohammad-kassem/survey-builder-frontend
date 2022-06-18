@@ -5,6 +5,8 @@ import Text from "./components/Text";
 import Textarea from "./components/Textarea";
 import RadioButton from "./components/RadioButton";
 import Date from "./components/Date";
+import Time from "./components/Time";
+import Color from "./components/Color";
 
 
 
@@ -72,7 +74,7 @@ function App() {
         <Register register={register}/>
       }></Route>
       <Route path="/" element = {
-        <Date question={question} answer={answer} options={options}/>
+        <Color question={question} answer={answer} options={options}/>
       }></Route>
     </Routes>
   )
