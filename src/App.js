@@ -1,10 +1,17 @@
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Text from "./components/Text";
 
 function App() {
    const navigate = useNavigate();
-
+   let question={
+    id: 1,
+    text: "bdjh",
+    survey_id: 1};
+    console.log(question.id);
+  
+  let answer = {};
   //login
   async function login(cridentials) {
     let data = new FormData();
@@ -23,7 +30,7 @@ function App() {
   };
 
   //register
-  const register = async (cridentials) => {
+  async function register(cridentials) {
     let data = new FormData();
     data.append("fname", cridentials.fname);
     data.append("lname", cridentials.lname);
@@ -47,6 +54,9 @@ function App() {
       }></Route>
       <Route path="/register" element = {
         <Register register={register}/>
+      }></Route>
+      <Route path="/" element = {
+        <Text question={question} answer={answer}/>
       }></Route>
     </Routes>
   )
