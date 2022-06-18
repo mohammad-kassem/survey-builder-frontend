@@ -10,7 +10,7 @@ function SurveysPage({surveys}){
     return (
         <>
         <div className="survey-container page-content">
-            <AddHeader showAddSurvey={showAddSurvey} onAdd={()=>{console.log("hello");setShowAddSurvey(!showAddSurvey)}}/>
+            <AddHeader showAddSurvey={showAddSurvey} onAdd={()=>{setShowAddSurvey(!showAddSurvey)}}/>
             <div>
             {showAddSurvey && <Footer/>}
             </div>
