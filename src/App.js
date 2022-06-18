@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -11,140 +12,33 @@ import Surveys from "./components/Surveys";
 
 
 function App() {
-   const navigate = useNavigate();
-    let surveys =[
-      {
-          "id": 1,
-          "title": "first",
-          "description": "bleh",
-          "created_at": "2022-06-17T17:42:10.000000Z",
-          "updated_at": "2022-06-17T17:42:10.000000Z",
-          "questions": [
-              {
-                  "id": 1,
-                  "text": "bdjh",
-                  "survey_id": 1,
-                  "type": "radiobutton",
-                  "created_at": "2022-06-17T17:42:10.000000Z",
-                  "updated_at": "2022-06-17T17:42:10.000000Z",
-                  "options": [
-                      {
-                          "id": 1,
-                          "option": "1",
-                          "question_id": 1,
-                          "created_at": "2022-06-17T17:42:10.000000Z",
-                          "updated_at": "2022-06-17T17:42:10.000000Z"
-                      },
-                      {
-                          "id": 2,
-                          "option": "0",
-                          "question_id": 1,
-                          "created_at": "2022-06-17T17:42:10.000000Z",
-                          "updated_at": "2022-06-17T17:42:10.000000Z"
-                      }
-                  ]
-              },
-              {
-                  "id": 2,
-                  "text": "test",
-                  "survey_id": 1,
-                  "type": "radiobutton",
-                  "created_at": "2022-06-17T17:42:10.000000Z",
-                  "updated_at": "2022-06-17T17:42:10.000000Z",
-                  "options": [
-                      {
-                          "id": 3,
-                          "option": "1",
-                          "question_id": 2,
-                          "created_at": "2022-06-17T17:42:10.000000Z",
-                          "updated_at": "2022-06-17T17:42:10.000000Z"
-                      },
-                      {
-                          "id": 4,
-                          "option": "0",
-                          "question_id": 2,
-                          "created_at": "2022-06-17T17:42:10.000000Z",
-                          "updated_at": "2022-06-17T17:42:10.000000Z"
-                      }
-                  ]
-              }
-          ]
-      },
-      {
-          "id": 2,
-          "title": "first",
-          "description": "bleh",
-          "created_at": "2022-06-17T17:53:51.000000Z",
-          "updated_at": "2022-06-17T17:53:51.000000Z",
-          "questions": [
-              {
-                  "id": 3,
-                  "text": "bdjh",
-                  "survey_id": 2,
-                  "type": "radiobutton",
-                  "created_at": "2022-06-17T17:53:51.000000Z",
-                  "updated_at": "2022-06-17T17:53:51.000000Z",
-                  "options": [
-                      {
-                          "id": 5,
-                          "option": "1",
-                          "question_id": 3,
-                          "created_at": "2022-06-17T17:53:51.000000Z",
-                          "updated_at": "2022-06-17T17:53:51.000000Z"
-                      },
-                      {
-                          "id": 6,
-                          "option": "0",
-                          "question_id": 3,
-                          "created_at": "2022-06-17T17:53:51.000000Z",
-                          "updated_at": "2022-06-17T17:53:51.000000Z"
-                      }
-                  ]
-              },
-              {
-                  "id": 4,
-                  "text": "test",
-                  "survey_id": 2,
-                  "type": "radiobutton",
-                  "created_at": "2022-06-17T17:53:51.000000Z",
-                  "updated_at": "2022-06-17T17:53:51.000000Z",
-                  "options": [
-                      {
-                          "id": 7,
-                          "option": "1",
-                          "question_id": 4,
-                          "created_at": "2022-06-17T17:53:51.000000Z",
-                          "updated_at": "2022-06-17T17:53:51.000000Z"
-                      },
-                      {
-                          "id": 8,
-                          "option": "0",
-                          "question_id": 4,
-                          "created_at": "2022-06-17T17:53:51.000000Z",
-                          "updated_at": "2022-06-17T17:53:51.000000Z"
-                      }
-                  ]
-              }
-          ]
-      }
-  ]
-
-   let question={
-    id: 1,
-    text: "bdjh",
-    survey_id: 1};
   
-  let answer = {};
+  const [surveys, setSurveys] = useState([]);
 
-  let options =[{
-    id: 1,
-    option: "yes",
-    question_id: 1
-  }, {
-    id: 2,
-    option: "no",
-    question_id: 1}
-  ]
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    async function getSurveys(){
+      const surveysFromServer = await fetchSurveys();
+      setSurveys(surveysFromServer);
+    };
+    getSurveys();
+  }, []);
+
+  //Fetch All Surveys from Backend
+  async function fetchSurveys(){
+    let token = localStorage.getItem("token");
+    try {
+      const res = await fetch("http://127.0.0.1:8000/api/v1/admin/get_surveys",{
+        headers: {"Authorization" : `Bearer ${token}`}
+      });
+      const data = await res.json();
+      return data.surveys;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+    
   //login
   async function login(cridentials) {
     let data = new FormData();
@@ -189,7 +83,7 @@ function App() {
         <Register register={register}/>
       }></Route>
       <Route path="/" element = {
-        <Surveys surveys={surveys} answer={answer} options={options}/>
+        <Surveys surveys={surveys}/>
       }></Route>
     </Routes>
   )
