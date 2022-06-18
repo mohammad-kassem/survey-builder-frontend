@@ -2,6 +2,8 @@ import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Text from "./components/Text";
+import Textarea from "./components/Textarea";
+
 
 function App() {
    const navigate = useNavigate();
@@ -56,7 +58,7 @@ function App() {
         <Register register={register}/>
       }></Route>
       <Route path="/" element = {
-        <Text question={question} answer={answer}/>
+        <Textarea question={question} answer={answer}/>
       }></Route>
     </Routes>
   )
