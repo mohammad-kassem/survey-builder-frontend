@@ -1,7 +1,11 @@
 import { useState } from "react";
 import Button from "./Button";
+import AddQuestion from "./AddQuestion";
+import NewQuestion from "./NewQuestion";
+
 
 function AddHeader({showAddSurvey, onAdd}){
+    const [showAddQuestion, setShowAddQuestion] = useState(false);
     return(
         <>
             <h2> Add Survey</h2>
@@ -10,6 +14,8 @@ function AddHeader({showAddSurvey, onAdd}){
                 text = {showAddSurvey ? "Cancel" : "Save"}
                 onClick={onAdd}
             />
+            {showAddSurvey && <AddQuestion showAddQuestion={showAddQuestion} onAdd={()=>{setShowAddQuestion(!showAddQuestion)}}/>}
+            {showAddQuestion && <NewQuestion/>}
         </>
     )
 }
