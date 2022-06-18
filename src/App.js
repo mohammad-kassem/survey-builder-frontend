@@ -3,6 +3,7 @@ import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Surveys from "./components/Surveys";
+import SurveysPage from "./pages/SurveysPage";
 
 
 
@@ -28,6 +29,7 @@ function App() {
   //Fetch All Surveys from Backend
   async function fetchSurveys(){
     let token = localStorage.getItem("token");
+    if (!token) navigate ("/login");
     try {
       const res = await fetch("http://127.0.0.1:8000/api/v1/admin/get_surveys",{
         headers: {"Authorization" : `Bearer ${token}`}
@@ -83,7 +85,7 @@ function App() {
         <Register register={register}/>
       }></Route>
       <Route path="/" element = {
-        <Surveys surveys={surveys}/>
+        <SurveysPage surveys={surveys}/>
       }></Route>
     </Routes>
   )
