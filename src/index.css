@@ -93,7 +93,7 @@ a:hover{
   align-items: center;
 }
 
-input, textarea, select {
+input[type="text"], textarea, select{
   width: 30%;
   height: 50px;
   padding: 12px 1%;
@@ -108,7 +108,11 @@ textarea{
 }
 
 label {
-  padding: 15px 0 15px 0;
+  padding: 5px;
   display: inline-block;
   font-weight: bold;
+}
+
+.radio-container{
+  margin: 0 20px;
 }

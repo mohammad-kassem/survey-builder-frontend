@@ -3,6 +3,9 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Text from "./components/Text";
 import Textarea from "./components/Textarea";
+import RadioButton from "./components/RadioButton";
+
+
 
 
 function App() {
@@ -11,9 +14,18 @@ function App() {
     id: 1,
     text: "bdjh",
     survey_id: 1};
-    console.log(question.id);
   
   let answer = {};
+
+  let options =[{
+    id: 1,
+    option: "yes",
+    question_id: 1
+  }, {
+    id: 2,
+    option: "no",
+    question_id: 1}
+  ]
   //login
   async function login(cridentials) {
     let data = new FormData();
@@ -58,7 +70,7 @@ function App() {
         <Register register={register}/>
       }></Route>
       <Route path="/" element = {
-        <Textarea question={question} answer={answer}/>
+        <RadioButton question={question} answer={answer} options={options}/>
       }></Route>
     </Routes>
   )
