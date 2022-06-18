@@ -8,6 +8,8 @@ import Date from "./components/Date";
 import Time from "./components/Time";
 import Color from "./components/Color";
 import Number from "./components/Number";
+import Range from "./components/Range";
+
 
 
 
@@ -75,7 +77,7 @@ function App() {
         <Register register={register}/>
       }></Route>
       <Route path="/" element = {
-        <Number question={question} answer={answer} options={options}/>
+        <Range question={question} answer={answer} options={options}/>
       }></Route>
     </Routes>
   )
