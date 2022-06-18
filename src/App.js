@@ -9,6 +9,8 @@ import Time from "./components/Time";
 import Color from "./components/Color";
 import Number from "./components/Number";
 import Range from "./components/Range";
+import Dropdown from "./components/Dropdown";
+
 
 
 
@@ -77,7 +79,7 @@ function App() {
         <Register register={register}/>
       }></Route>
       <Route path="/" element = {
-        <Range question={question} answer={answer} options={options}/>
+        <Dropdown question={question} answer={answer} options={options}/>
       }></Route>
     </Routes>
   )
