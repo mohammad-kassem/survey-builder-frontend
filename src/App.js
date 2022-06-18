@@ -1,16 +1,8 @@
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Text from "./components/Text";
-import Textarea from "./components/Textarea";
-import RadioButton from "./components/RadioButton";
-import Date from "./components/Date";
-import Time from "./components/Time";
-import Color from "./components/Color";
-import Number from "./components/Number";
-import Range from "./components/Range";
-import Dropdown from "./components/Dropdown";
-import Image from "./components/Image";
+import Survey from "./components/Survey";
+
 
 
 
@@ -20,6 +12,64 @@ import Image from "./components/Image";
 
 function App() {
    const navigate = useNavigate();
+    let survey ={
+      "id": 1,
+      "title": "first",
+      "description": "bleh",
+      "created_at": "2022-06-17T17:42:10.000000Z",
+      "updated_at": "2022-06-17T17:42:10.000000Z",
+      "questions": [
+          {
+              "id": 1,
+              "text": "bdjh",
+              "survey_id": 1,
+              "type": "radiobutton",
+              "created_at": "2022-06-17T17:42:10.000000Z",
+              "updated_at": "2022-06-17T17:42:10.000000Z",
+              "options": [
+                  {
+                      "id": 1,
+                      "option": "1",
+                      "question_id": 1,
+                      "created_at": "2022-06-17T17:42:10.000000Z",
+                      "updated_at": "2022-06-17T17:42:10.000000Z"
+                  },
+                  {
+                      "id": 2,
+                      "option": "0",
+                      "question_id": 1,
+                      "created_at": "2022-06-17T17:42:10.000000Z",
+                      "updated_at": "2022-06-17T17:42:10.000000Z"
+                  }
+              ]
+          },
+          {
+              "id": 2,
+              "text": "test",
+              "survey_id": 1,
+              "type": "radiobutton",
+              "created_at": "2022-06-17T17:42:10.000000Z",
+              "updated_at": "2022-06-17T17:42:10.000000Z",
+              "options": [
+                  {
+                      "id": 3,
+                      "option": "1",
+                      "question_id": 2,
+                      "created_at": "2022-06-17T17:42:10.000000Z",
+                      "updated_at": "2022-06-17T17:42:10.000000Z"
+                  },
+                  {
+                      "id": 4,
+                      "option": "0",
+                      "question_id": 2,
+                      "created_at": "2022-06-17T17:42:10.000000Z",
+                      "updated_at": "2022-06-17T17:42:10.000000Z"
+                  }
+              ]
+          }
+      ]
+    }
+
    let question={
     id: 1,
     text: "bdjh",
@@ -80,7 +130,7 @@ function App() {
         <Register register={register}/>
       }></Route>
       <Route path="/" element = {
-        <Image question={question} answer={answer} options={options}/>
+        <Survey survey={survey} answer={answer} options={options}/>
       }></Route>
     </Routes>
   )
