@@ -10,6 +10,7 @@ import Color from "./components/Color";
 import Number from "./components/Number";
 import Range from "./components/Range";
 import Dropdown from "./components/Dropdown";
+import Image from "./components/Image";
 
 
 
@@ -79,7 +80,7 @@ function App() {
         <Register register={register}/>
       }></Route>
       <Route path="/" element = {
-        <Dropdown question={question} answer={answer} options={options}/>
+        <Image question={question} answer={answer} options={options}/>
       }></Route>
     </Routes>
   )
