@@ -7,6 +7,11 @@ function Form({type, login}){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    function onSubmit(e){
+      e.preventDefault();
+      login({email, password});
+    };
+
     return (
         <form className="form" onSubmit={onSubmit}>
             <div className="form-content">

@@ -5,7 +5,7 @@ function Login({login}){
     
     return (
         <>
-        <Form type = "login"/>
+        <Form type = "login" login={login}/>
         </>
     )
 }
