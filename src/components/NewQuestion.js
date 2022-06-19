@@ -1,35 +1,64 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import OptionsForm from "./OptionsForm";
 
 
 function NewQuestion(){
-    const [title, setTitle] = useState("");
-    const [desc, setDesc] = useState("");
+    const [text, setText] = useState("");
     const [type, setType] = useState("");
-    const [optionsCount, setOptionsCount] = useState();
+    const [options, setOptions] = useState([]);
+    const [optionsCount, setOptionsCount] = useState(1);
     const [addOptions, setAddOptions] = useState(false);
-    console.log(title, desc, type, optionsCount, addOptions);
+    const [question, setQuestion] = useState({});
+    console.log(question);
+    let options_submitted = [];
 
 
-    let options=["color", "date", "dropdown", "image", "number", "radiobutton", "range", "text", "textarea", "time"];
+    useEffect(() => {
+        setOptions(new Array(optionsCount).fill(""));
+        console.log("hello");
+      }, [optionsCount]);
+
+    function submitQuestion(text, type, options){
+        for (let i=0; i < options.length; i++){
+            let obj = {option : options[i]};
+            options_submitted.push(obj);
+        }
+        console.log(options_submitted)
+        // submitQuestion("options", options_submitted);
+        setQuestion({text:text, type:type, options:options_submitted});
+    }
+
+    function handleText(index, e){
+        const temp = options.map(function(v, i){
+            return (i !== index ? v : e.target.value);
+        });
+        setOptions(temp);
+    }
+
+    let q_options=["color", "date", "dropdown", "image", "number", "radiobutton", "range", "text", "textarea", "time"];
     return(
-    <>  
-        <input type="text" id="question-title" value={title} placeholder="title" onChange={function(e){setTitle(e.target.value)}}></input>
-        <input type="text" id="question-description" value={desc} placeholder="description" onChange={function(e){setDesc(e.target.value)}}></input>
-        <select id={"new-question"} onChange={function(e){
-                setType(e.target.value);}}>
-        {options.map(option=>(
-            <option value={option}>{option}</option>
+    <form onSubmit={(e) => {e.preventDefault(); submitQuestion(text, type, options)}}>  
+        <input type="text" id="question-text" value={text} placeholder="text" required onChange={function(e){setText(e.target.value)}}></input>
+        <select id={"new-question"} onChange={function(e){setType(e.target.value);}}>
+        {q_options.map(q_option=>(
+            <option value={q_option}>{q_option}</option>
         ))
         }
         
         </select>
-        {["radiobutton", "dropdown"].includes(type) && <div>
-                <input type="number" value={optionsCount} onChange={function(e) {setOptionsCount(e.target.value)}}></input>
-                <button onClick={()=>{setAddOptions(!addOptions)}}> save options</button>
-            </div>}
-            {addOptions && <OptionsForm optionsCount={Number(optionsCount)}/>}
-    </>
+        {["radiobutton", "dropdown"].includes(type) && <>
+        <input type="number" value={optionsCount} onChange={function(e) {setOptionsCount(Number(e.target.value))}}></input>
+            
+            {options.map((option, index) =>(
+                <input type="text" value={option} required onChange={(e)=>handleText(index, e)}>
+                </input>))}
+            </>}
+                {/* <input type="number" value={optionsCount} onChange={function(e) {setOptionsCount(e.target.value)}}></input>
+                <button onClick={()=>{setAddOptions(!addOptions)}}> save options</button> */}
+            {/* </div>}
+            {addOptions &&  */}
+        <button type="submit">save question</button>
+    </form>
     )
 }
 
