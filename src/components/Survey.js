@@ -18,9 +18,19 @@ function Survey({survey}){
         <>
         <SurveyHeader survey={survey}/>
         <div className="survey-container">
-        {questions.map(question=>(
+        {questions.map(question=>{
             question.type === "radiobutton" && <RadioButton question={question} options={question.options}/>
-        ))
+            question.type === "dropdown" && <Dropdown question={question} options={question.options}/>
+            question.type === "date" && <Date question={question} options={question.options}/>
+            question.type === "color" && <Color question={question} options={question.options}/>
+            question.type === "image" && <Image question={question} options={question.options}/>
+            question.type === "number" && <Number question={question} options={question.options}/>
+            question.type === "range" && <Range question={question} options={question.options}/>
+            question.type === "text" && <Text question={question} options={question.options}/>
+            question.type === "textarea" && <Textarea question={question} options={question.options}/>
+            question.type === "time" && <Time question={question} options={question.options}/>
+
+        })
         }
         </div>
         </>
