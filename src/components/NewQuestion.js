@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
-import OptionsForm from "./OptionsForm";
 
 
-function NewQuestion(){
+function NewQuestion({question, setQuestion}){
     const [text, setText] = useState("");
     const [type, setType] = useState("");
     const [options, setOptions] = useState([]);
     const [optionsCount, setOptionsCount] = useState(1);
     const [addOptions, setAddOptions] = useState(false);
-    const [question, setQuestion] = useState({});
+    // const [question, setQuestion] = useState({});
     console.log(question);
     let options_submitted = [];
 
@@ -39,7 +38,8 @@ function NewQuestion(){
     return(
     <form onSubmit={(e) => {e.preventDefault(); submitQuestion(text, type, options)}}>  
         <input type="text" id="question-text" value={text} placeholder="text" required onChange={function(e){setText(e.target.value)}}></input>
-        <select id={"new-question"} onChange={function(e){setType(e.target.value);}}>
+        <select id={"new-question"} required onChange={function(e){setType(e.target.value);}}>
+        <option value="">Please select</option>
         {q_options.map(q_option=>(
             <option value={q_option}>{q_option}</option>
         ))
