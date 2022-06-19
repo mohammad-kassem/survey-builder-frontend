@@ -6,6 +6,8 @@ import Surveys from "./components/Surveys";
 import SurveysPage from "./pages/SurveysPage";
 import SurveyPage from "./pages/SurveyPage";
 import UserResponses from "./pages/UserResponses";
+import SurveyAnswers from "./components/SurveyAnswers";
+import AllResponses from "./pages/AllResponses";
 
 
 function App() {
@@ -88,6 +90,9 @@ function App() {
       }></Route>
       <Route path="/user_responses" element = {
         <UserResponses surveys={surveys}/>
+      }></Route>
+      <Route path="/all_responses" element = {
+        <AllResponses/>
       }></Route>
     </Routes>
   )

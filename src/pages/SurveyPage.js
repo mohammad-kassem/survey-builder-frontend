@@ -48,7 +48,8 @@ function SurveyPage(){
         const res = await fetch("http://127.0.0.1:8000/api/v1/user/add_response", {
           method: "POST",
           headers: {
-            "Authorization" : `Bearer ${token}`
+            "Authorization" : `Bearer ${token}`,
+            "Content-type": "application/json",
           },
           body: JSON.stringify(data),
         });
