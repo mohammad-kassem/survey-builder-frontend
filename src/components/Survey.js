@@ -12,14 +12,14 @@ import Image from ".//Image";
 import SurveyHeader from "./SurveyHeader";
 
 
-function Survey({survey}){
+function Survey({survey, toSubmit, addSurvey}){
     let questions = survey.questions;
     return(
         <>
         <SurveyHeader survey={survey}/>
         <div className="survey-container">
         {questions.map((question)=>
-        <>
+            <>
             {question.type === "radiobutton" && <RadioButton question={question} options={question.options}/>}
             {question.type === "dropdown" && <Dropdown question={question} options={question.options}/>}
             {question.type === "date" && <Date question={question} options={question.options}/>}
@@ -32,6 +32,7 @@ function Survey({survey}){
             {question.type === "time" && <Time question={question} options={question.options}/>}
             </>
         )}
+        {toSubmit && <button className="btn" onClick={addSurvey}></button>}
         </div>
         </>
     )

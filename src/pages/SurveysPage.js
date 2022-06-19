@@ -8,16 +8,31 @@ import Surveys from "../components/Surveys";
 
 function SurveysPage({surveys}){
     const [showAddSurvey, setShowAddSurvey] = useState(false);
+    const [showSubmitSurvey, setShowSubmirSurvey] = useState(true);
     const [question, setQuestion] = useState([]);
     const [questions, setQuestions] = useState([]);
+    const [details, setDetails] = useState({});
     const firstUpdate = useRef(true);
+    console.log(details);
 
+    let survey = {...details, questions:questions};
+    console.log(survey);
 
-    let survey = {title:"jhjh", description:"jhjjh", questions:questions};
-    console.log(showAddSurvey);
-    console.log(question);
-    console.log(questions);
-    console.log(questions);
+    //add survey
+    async function addSurvey(survey) {
+    console.log(survey);
+    let data = new FormData();
+    data.append("survey", survey);
+    // data.append("password", cridentials.password);
+    const res = await fetch("http://127.0.0.1:8000/api/v1/admin/add_survey", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: data,
+    });
+    const response = await res.json();
+  };
 
 
     useEffect(() => {
@@ -33,11 +48,8 @@ function SurveysPage({surveys}){
     return (
         <>
         <div className="survey-container page-content">
-            <AddHeader showAddSurvey={showAddSurvey} onAdd={()=>{setShowAddSurvey(!showAddSurvey)}} question={question} setQuestion={setQuestion}/>
-            <div>
-            {showAddSurvey && <Footer/>}
-            </div>
-            {questions.length != [] && <Survey survey={survey}/>}
+            <AddHeader showAddSurvey={showAddSurvey} setShowAddSurvey={()=>{setShowAddSurvey(!showAddSurvey)}} question={question} setQuestion={setQuestion} setDetails={setDetails}/>
+            {questions.length != [] && (showSubmitSurvey && <Survey survey={survey} toSubmit={true} addSurvey={addSurvey}/>)}
         </div>
         <>
             <Surveys surveys={surveys}/>

@@ -5,16 +5,15 @@ import NewQuestion from "./NewQuestion";
 import SurveyDetails from "./SurveyDetails";
 
 
-function AddHeader({showAddSurvey, onAdd, question, setQuestion}){
+function AddHeader({showAddSurvey, setShowAddSurvey, question, setQuestion, setDetails}){
     const [showAddQuestion, setShowAddQuestion] = useState(false);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const [details, setDetails] = useState("");
 
 
     function detailsHandler(title, description){
         setDetails({title:title, description:description});
-        onAdd();
+        setShowAddSurvey();
     }
 
     return(
@@ -23,10 +22,10 @@ function AddHeader({showAddSurvey, onAdd, question, setQuestion}){
             {!showAddQuestion && <Button
                 color = {showAddSurvey ? "red" : "green"}
                 text = {showAddSurvey ? "Cancel" : "Save"}
-                onClick={onAdd}
+                onClick={setShowAddSurvey}
             />}
             {showAddSurvey && <SurveyDetails title={title} description={description} setTitle={setTitle} setDescription={setDescription} detailsHandler={detailsHandler} setShowAddQuestion={setShowAddQuestion}/>}
-            {showAddQuestion && <AddQuestion showAddQuestion={showAddQuestion} onAdd={()=>{setShowAddQuestion(!showAddQuestion)}}/>}
+            {showAddQuestion && <AddQuestion showAddQuestion={showAddQuestion} setShowAddSurvey={()=>{setShowAddQuestion(!showAddQuestion)}}/>}
             {showAddQuestion && <NewQuestion question={question} setQuestion={setQuestion}/>}
         </>
     )
