@@ -4,11 +4,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Surveys from "./components/Surveys";
 import SurveysPage from "./pages/SurveysPage";
-
-
-
-
-
+import SurveyPage from "./pages/SurveyPage";
 
 
 
@@ -29,7 +25,7 @@ function App() {
   //Fetch All Surveys from Backend
   async function fetchSurveys(){
     let token = localStorage.getItem("token");
-    if (!token) navigate ("/login");
+    if (!token) navigate("/login");
     try {
       const res = await fetch("http://127.0.0.1:8000/api/v1/admin/get_surveys",{
         headers: {"Authorization" : `Bearer ${token}`}
@@ -83,6 +79,9 @@ function App() {
       }></Route>
       <Route path="/register" element = {
         <Register register={register}/>
+      }></Route>
+      <Route path="/survey_respond" element = {
+        <SurveyPage/>
       }></Route>
       <Route path="/" element = {
         <SurveysPage surveys={surveys}/>

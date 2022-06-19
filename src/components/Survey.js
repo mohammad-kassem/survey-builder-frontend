@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import Text from ".//Text";
 import Textarea from ".//Textarea";
 import RadioButton from "./RadioButton";
@@ -12,12 +13,14 @@ import Image from ".//Image";
 import SurveyHeader from "./SurveyHeader";
 
 
-function Survey({survey, toSubmit, addSurvey}){
+function Survey({survey, toSubmit, addSurvey, user,surveyID, setSurveyID}){
     let questions = survey.questions;
+    const navigate = useNavigate();
+
     return(
-        <>
+        <div id={survey.id} onClick={(e)=>{setSurveyID(e.currentTarget.id); navigate('/survey_respond',{replace: false, state: {survey:survey}})}}>
         <SurveyHeader survey={survey}/>
-        <div className="survey-container">
+        <form className="survey-container">
         {questions.map((question)=>
             <>
             {question.type === "radiobutton" && <RadioButton question={question} options={question.options}/>}
@@ -33,8 +36,9 @@ function Survey({survey, toSubmit, addSurvey}){
             </>
         )}
         {toSubmit && <button className="btn" onClick={addSurvey}></button>}
+        {user && <button type="submit" className="btn" onClick={addSurvey}></button>}
+        </form>
         </div>
-        </>
     )
 }
 

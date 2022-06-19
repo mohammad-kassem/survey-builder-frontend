@@ -23,7 +23,7 @@ function SurveysPage({surveys}){
     console.log(survey);
     let data = new FormData();
     data.append("survey", survey);
-    // data.append("password", cridentials.password);
+    console.log(data);
     const res = await fetch("http://127.0.0.1:8000/api/v1/admin/add_survey", {
       method: "POST",
       headers: {
