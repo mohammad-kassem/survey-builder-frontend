@@ -14,18 +14,19 @@ function AddHeader({showAddSurvey, onAdd, question, setQuestion}){
 
     function detailsHandler(title, description){
         setDetails({title:title, description:description});
+        onAdd();
     }
 
     return(
         <>
             <h2> Add Survey</h2>
-            <Button
+            {!showAddQuestion && <Button
                 color = {showAddSurvey ? "red" : "green"}
                 text = {showAddSurvey ? "Cancel" : "Save"}
                 onClick={onAdd}
-            />
-            {showAddSurvey && <SurveyDetails title={title} description={description} setTitle={setTitle} setDescription={setDescription} detailsHandler={detailsHandler}/>}
-            {/* <AddQuestion showAddQuestion={showAddQuestion} onAdd={()=>{setShowAddQuestion(!showAddQuestion)}}/> */}
+            />}
+            {showAddSurvey && <SurveyDetails title={title} description={description} setTitle={setTitle} setDescription={setDescription} detailsHandler={detailsHandler} setShowAddQuestion={setShowAddQuestion}/>}
+            {showAddQuestion && <AddQuestion showAddQuestion={showAddQuestion} onAdd={()=>{setShowAddQuestion(!showAddQuestion)}}/>}
             {showAddQuestion && <NewQuestion question={question} setQuestion={setQuestion}/>}
         </>
     )
