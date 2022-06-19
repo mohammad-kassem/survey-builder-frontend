@@ -5,7 +5,7 @@ function Surveys({surveys}){
     const [surveyID, setSurveyID] = useState(); 
     console.log(surveyID);
     return(
-        <div className=" surveys-container page-content">
+        <div className="surveys-container page-content">
         
             {surveys.map(survey=>(
                 <>

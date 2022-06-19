@@ -13,26 +13,26 @@ import Image from ".//Image";
 import SurveyHeader from "./SurveyHeader";
 
 
-function Survey({survey, toSubmit, addSurvey, user,surveyID, setSurveyID}){
+function Survey({survey, toSubmit, addSurvey, user,surveyID, setSurveyID, answers, addAnswer, addResponse}){
     let questions = survey.questions;
     const navigate = useNavigate();
 
     return(
-        <div id={survey.id} onClick={(e)=>{setSurveyID(e.currentTarget.id); navigate('/survey_respond',{replace: false, state: {survey:survey}})}}>
+        <div id={survey.id} onClick={(e)=>{setSurveyID(e.target.id); navigate('/survey_respond',{replace: false, state: {survey:survey}})}}>
         <SurveyHeader survey={survey}/>
-        <form className="survey-container">
+        <form className="survey-container" onSubmit={(e)=>{e.preventDefault(); addResponse(answers)}}>
         {questions.map((question)=>
             <>
-            {question.type === "radiobutton" && <RadioButton question={question} options={question.options}/>}
-            {question.type === "dropdown" && <Dropdown question={question} options={question.options}/>}
-            {question.type === "date" && <Date question={question} options={question.options}/>}
-            {question.type === "color" && <Color question={question} options={question.options}/>}
-            {question.type === "image" && <Image question={question} options={question.options}/>}
-            {question.type === "number" && <Number question={question} options={question.options}/>}
-            {question.type === "range" && <Range question={question} options={question.options}/>}
-            {question.type === "text" && <Text question={question} options={question.options}/>}
-            {question.type === "textarea" && <Textarea question={question} options={question.options}/>}
-            {question.type === "time" && <Time question={question} options={question.options}/>}
+            {question.type === "radiobutton" && <RadioButton question={question} options={question.options} answers={answers} addAnswer={addAnswer}/>}
+            {question.type === "dropdown" && <Dropdown question={question} options={question.options} answers={answers} addAnswer={addAnswer}/>}
+            {question.type === "date" && <Date question={question} options={question.options} answers={answers} addAnswer={addAnswer}/>}
+            {question.type === "color" && <Color question={question} options={question.options} answers={answers} addAnswer={addAnswer}/>}
+            {question.type === "image" && <Image question={question} options={question.options} answers={answers} addAnswer={addAnswer}/>}
+            {question.type === "number" && <Number question={question} options={question.options} answers={answers} addAnswer={addAnswer}/>}
+            {question.type === "range" && <Range question={question} options={question.options} answers={answers} addAnswer={addAnswer}/>}
+            {question.type === "text" && <Text question={question} options={question.options} answers={answers} addAnswer={addAnswer}/>}
+            {question.type === "textarea" && <Textarea question={question} options={question.options} answers={answers} addAnswer={addAnswer}/>}
+            {question.type === "time" && <Time question={question} options={question.options} answers={answers} addAnswer={addAnswer}/>}
             </>
         )}
         {toSubmit && <button className="btn" onClick={addSurvey}></button>}

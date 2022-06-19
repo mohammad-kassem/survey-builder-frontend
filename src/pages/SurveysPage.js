@@ -16,11 +16,11 @@ function SurveysPage({surveys}){
     console.log(details);
 
     let survey = {...details, questions:questions};
-    console.log(survey);
+    console.log(JSON.stringify(survey));
 
     //add survey
     async function addSurvey(survey) {
-    console.log(survey);
+    console.log(JSON.stringify(survey));
     let data = new FormData();
     data.append("survey", survey);
     console.log(data);
@@ -29,7 +29,7 @@ function SurveysPage({surveys}){
       headers: {
         "Content-type": "application/json",
       },
-      body: data,
+      body: JSON.stringify(data),
     });
     const response = await res.json();
   };
