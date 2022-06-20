@@ -1,18 +1,18 @@
 import { useState } from "react";
-import Survey from "./Survey";
+import AdminSurvey from "./AdminSurvey";
 
-function Surveys({surveys}){
+function AdminSurveys({surveys}){
     const [surveyID, setSurveyID] = useState(); 
     return(
         <div className="surveys-container page-content">
         
             {surveys.map(survey=>(
                 <>
-                <Survey survey={survey} surveyID={surveyID} setSurveyID={setSurveyID}/>
+                <AdminSurvey survey={survey} surveyID={surveyID} setSurveyID={setSurveyID}/>
                 </>
             ))}
         </div>
     )
 }
 
-export default Surveys;
+export default AdminSurveys;

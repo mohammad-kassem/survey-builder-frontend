@@ -7,6 +7,7 @@ import SurveyAnswers from "../components/SurveyAnswers";
 
 function AllResponses(surveyID){
   const [responses, setResponses] = useState([]);
+  const navigate = useNavigate();
 
 
     useEffect(() => {

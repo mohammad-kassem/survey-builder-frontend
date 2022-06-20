@@ -1,26 +1,25 @@
 import {useState, useEffect, useRef} from "react";
 import AddHeader from "../components/AddHeader";
 import Footer from "../components/Footer";
-import Survey from "../components/Survey";
-import Surveys from "../components/Surveys";
+import AdminSurvey from "../components/AdminSurvey";
+import AdminSurveys from "../components/AdminSurveys";
 
 
 
-function SurveysPage({surveys}){
+function AdminSurveysPage({surveys}){
     const [showAddSurvey, setShowAddSurvey] = useState(false);
     const [showSubmitSurvey, setShowSubmirSurvey] = useState(true);
     const [question, setQuestion] = useState([]);
     const [questions, setQuestions] = useState([]);
     const [details, setDetails] = useState({});
     const firstUpdate = useRef(true);
-    console.log(details);
 
     let survey = {...details, questions:questions};
     console.log(JSON.stringify(survey));
     console.log(questions);
 
     //add survey
-    async function addSurvey(selectedsurvey) {
+    async function addSurvey() {
     console.log(JSON.stringify(survey));
     let data = new FormData();
     data.append("survey", survey);
@@ -48,9 +47,15 @@ function SurveysPage({surveys}){
 
     return (
         <>
-            <Surveys surveys={surveys}/>
+        <div className="survey-container page-content">
+            <AddHeader showAddSurvey={showAddSurvey} setShowAddSurvey={()=>{setShowAddSurvey(!showAddSurvey)}} question={question} setQuestion={setQuestion} setDetails={setDetails}/>
+            {questions.length != [] && (showSubmitSurvey && <AdminSurvey survey={survey} toSubmit={true} addSurvey={addSurvey}/>)}
+        </div>
+        <>
+            <AdminSurveys surveys={surveys}/>
+        </>
         </>
     )
 }
 
-export default SurveysPage;
+export default AdminSurveysPage;

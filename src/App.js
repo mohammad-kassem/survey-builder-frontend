@@ -8,6 +8,7 @@ import SurveyPage from "./pages/SurveyPage";
 import UserResponses from "./pages/UserResponses";
 import SurveyAnswers from "./components/SurveyAnswers";
 import AllResponses from "./pages/AllResponses";
+import AdminSurveysPage from "./pages/AdminSurveysPage";
 
 
 function App() {
@@ -53,7 +54,8 @@ function App() {
     });
     const response = await res.json();
     localStorage.setItem("token", response.access_token);
-    if (response.access_token) navigate ("/");
+    if (response.user.role_id === 1) navigate ("/");
+    else navigate("/all_surveys")
   };
 
   //register
@@ -71,7 +73,7 @@ function App() {
       body: JSON.stringify(cridentials),
     });
     const response = await res.json();
-    if (response.status === "Success") navigate ("/login")
+    if (response.status === "Success") navigate("/login")
   };
 
   return(
@@ -93,6 +95,9 @@ function App() {
       }></Route>
       <Route path="/all_responses" element = {
         <AllResponses/>
+      }></Route>
+      <Route path="/all_surveys" element = {
+        <AdminSurveysPage surveys={surveys}/>
       }></Route>
     </Routes>
   )
