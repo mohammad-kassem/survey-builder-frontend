@@ -28,6 +28,7 @@ a:hover{
   font-size: 14px;
   font-weight: 700;
   color: #fff;
+  background-color: steelblue;
   padding: 14px 3vw;
   border: none;
   border-radius: 10px;
@@ -54,6 +55,11 @@ a:hover{
 
 .red{
   background-color: red;
+}
+
+img{
+  height: 100%;
+  width: 100%;
 }
 
 /* login page and register*/
@@ -146,4 +152,28 @@ label {
   border-radius: 10px 10px 0 0;
   padding: 20px 5%;
 }
+
+/* nav bar */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  padding: 20px 10%;
+  background-color: black;
+}
+
+nav h1{
+  font-size: 18px;
+  color: white;
+  font-weight: 600;
+}
+
+#profile-logo {
+  height: 100%;
+  float: right;
+  cursor: pointer;
+}
+
+
 

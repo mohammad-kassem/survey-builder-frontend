@@ -5,9 +5,13 @@ import SurveyAnswers from "../components/SurveyAnswers";
 
 
 
-function AllResponses(surveyID){
+function AllResponses(){
   const [responses, setResponses] = useState([]);
   const navigate = useNavigate();
+  const { state } = useLocation();
+  const { survey } = state;
+  let surveyID = survey.id;
+
 
 
     useEffect(() => {
@@ -19,7 +23,7 @@ function AllResponses(surveyID){
       }, []);
 
       //Fetch All Responses from Backend
-      async function fetchAllResponses(surveyID){
+      async function fetchAllResponses(){
         let token = localStorage.getItem("token");
         if (!token) navigate("/login");
         try {

@@ -5,6 +5,7 @@ function Login({login}){
     
     return (
         <>
+        {localStorage.clear()}
         <Form type = "login" login={login}/>
         </>
     )

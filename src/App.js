@@ -9,11 +9,14 @@ import UserResponses from "./pages/UserResponses";
 import SurveyAnswers from "./components/SurveyAnswers";
 import AllResponses from "./pages/AllResponses";
 import AdminSurveysPage from "./pages/AdminSurveysPage";
+import Nav from "./components/Nav";
 
 
 function App() {
   
   const [surveys, setSurveys] = useState([]);
+  const [admin, setAdmin] = useState(false);
+
 
   const navigate = useNavigate();
 
@@ -54,8 +57,8 @@ function App() {
     });
     const response = await res.json();
     localStorage.setItem("token", response.access_token);
-    if (response.user.role_id === 1) navigate ("/");
-    else navigate("/all_surveys")
+    if (response.user.role_id === 1) navigate ("/")
+    else {navigate("/all_surveys"); setAdmin(true)}
   };
 
   //register
@@ -85,19 +88,19 @@ function App() {
         <Register register={register}/>
       }></Route>
       <Route path="/survey_respond" element = {
-        <SurveyPage/>
+        <><Nav/> <SurveyPage/></>
       }></Route>
       <Route path="/" element = {
-        <SurveysPage surveys={surveys}/>
+        <><Nav/> <SurveysPage surveys={surveys}/> </>
       }></Route>
       <Route path="/user_responses" element = {
-        <UserResponses surveys={surveys}/>
+        <><Nav/><UserResponses surveys={surveys}/></>
       }></Route>
       <Route path="/all_responses" element = {
-        <AllResponses/>
+        <><Nav/><AllResponses/></>
       }></Route>
       <Route path="/all_surveys" element = {
-        <AdminSurveysPage surveys={surveys}/>
+        <><Nav/><AdminSurveysPage surveys={surveys}/></>
       }></Route>
     </Routes>
   )
