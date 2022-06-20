@@ -11,6 +11,7 @@ function UserResponses(){
     useEffect(() => {
         async function getResponses(){
           const surveys = await fetchUserResponses();
+          console.log(surveys);
           setSurveys(surveys);
         };
         getResponses();
@@ -25,7 +26,13 @@ function UserResponses(){
             headers: {"Authorization" : `Bearer ${token}`}
           });
           const data = await res.json();
-          return data.surveys;
+          let surveys = data.surveys;
+          let newArray = surveys.filter(function (survey) {
+            console.log(survey.questions[0].answers);
+            return survey.questions[0].answers !== [];
+          });
+          console.log(newArray);
+          return newArray;
         } catch (err) {
           console.log(err);
         }
