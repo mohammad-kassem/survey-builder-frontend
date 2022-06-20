@@ -41,6 +41,7 @@ function AdminSurveysPage({surveys}){
     });
     const response = await res.json();
     alert(response.message);
+    window.location.reload();
   };
 
 
