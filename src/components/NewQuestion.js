@@ -36,7 +36,8 @@ function NewQuestion({question, setQuestion}){
 
     let q_options=["color", "date", "dropdown", "image", "number", "radiobutton", "range", "text", "textarea", "time"];
     return(
-    <form onSubmit={(e) => {e.preventDefault(); submitQuestion(text, type, options)}}>  
+    <form onSubmit={(e) => {e.preventDefault(); submitQuestion(text, type, options)}}>
+        <div className="flex-container">
         <input type="text" id="question-text" value={text} placeholder="text" required onChange={function(e){setText(e.target.value)}}></input>
         <select id={"new-question"} required onChange={function(e){setType(e.target.value);}}>
         <option value="">Please select</option>
@@ -46,6 +47,7 @@ function NewQuestion({question, setQuestion}){
         }
         
         </select>
+        </div>
         {["radiobutton", "dropdown"].includes(type) && <>
         <input type="number" value={optionsCount} onChange={function(e) {setOptionsCount(Number(e.target.value))}}></input>
             
@@ -57,7 +59,7 @@ function NewQuestion({question, setQuestion}){
                 <button onClick={()=>{setAddOptions(!addOptions)}}> save options</button> */}
             {/* </div>}
             {addOptions &&  */}
-        <button type="submit">save question</button>
+        <div className="btn-container"><div></div><button type="submit" className="btn">Save Question</button></div>
     </form>
     )
 }

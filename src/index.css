@@ -24,6 +24,11 @@ a:hover{
   filter: brightness(120%);
 }
 
+.btn-container{
+  display: flex;
+  justify-content: space-between;
+}
+
 .btn {
   font-size: 14px;
   font-weight: 700;
@@ -107,7 +112,7 @@ img{
 input[type="text"], input[type="number"], textarea, select{
   width: 30%;
   height: 50px;
-  padding: 12px 1%;
+  padding: 12px 2%;
   margin: 10px 0;
   border: 2px solid #c5c5c5;
   border-radius: 10px;
@@ -123,6 +128,8 @@ input[type="number"]{
   width: 10%;
 }
 
+
+
 label {
   padding: 5px;
   display: inline-block;
@@ -136,7 +143,6 @@ label {
 .surveys-container{
   display: flex;
   flex-direction: column;
-  gap: 20px;
 }
 
 .survey-container{
@@ -151,6 +157,7 @@ label {
   color: #fff;
   border-radius: 10px 10px 0 0;
   padding: 20px 5%;
+  margin-top: 20px;
 }
 
 /* nav bar */
@@ -174,6 +181,26 @@ nav h1{
   float: right;
   cursor: pointer;
 }
+
+input.description{
+  width: 100%;
+}
+
+.flex-container{
+  display: flex;
+  justify-content: space-between;
+}
+
+.answers-container{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2%;
+}
+
+nav a{
+  color: white;
+}
+
 
 
 

@@ -10,6 +10,7 @@ import SurveyAnswers from "./components/SurveyAnswers";
 import AllResponses from "./pages/AllResponses";
 import AdminSurveysPage from "./pages/AdminSurveysPage";
 import Nav from "./components/Nav";
+import AdminNav from "./components/AdminNav";
 
 
 function App() {
@@ -97,10 +98,10 @@ function App() {
         <><Nav/><UserResponses surveys={surveys}/></>
       }></Route>
       <Route path="/all_responses" element = {
-        <><Nav/><AllResponses/></>
+        <><AdminNav/><AllResponses/></>
       }></Route>
       <Route path="/all_surveys" element = {
-        <><Nav/><AdminSurveysPage surveys={surveys}/></>
+        <><AdminNav/><AdminSurveysPage surveys={surveys}/></>
       }></Route>
     </Routes>
   )

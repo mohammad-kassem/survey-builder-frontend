@@ -39,7 +39,7 @@ function AllResponses(){
 
       return(
         <>
-        <h1> Below are all the user responses </h1>
+        <h1>Survey Responses</h1>
         <div className="surveys-container page-content">
         {responses.map(response=>(
           <>
