@@ -36,7 +36,7 @@ function Survey({survey, toSubmit, addSurvey, user,surveyID, setSurveyID, answer
             </>
         )}
         <div className="btn-container"><div></div>{toSubmit && <button className="btn" onClick={addSurvey}>Submit</button>}</div>
-        <div className="btn-container"><div></div>{user && <button type="submit" className="btn" onClick={addSurvey}>Add</button>}</div>
+        <div className="btn-container"><div></div>{user && <button type="submit" className="btn" onClick={addSurvey}>Submit</button>}</div>
         </form>
         </div>
     )
