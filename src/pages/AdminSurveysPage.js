@@ -25,21 +25,22 @@ function AdminSurveysPage({surveys}){
 
     //add survey
     async function addSurvey() {
-    console.log(JSON.stringify(survey));
+    survey = JSON.stringify(survey);
     let token = localStorage.getItem("token");
     if (!token) navigate("/login");
-    let data = new FormData();
-    data.append("survey", survey);
-    console.log(data);
+    // let data = new FormData();
+    // data.append("survey", survey);
+    // console.log(data);
     const res = await fetch("http://127.0.0.1:8000/api/v1/admin/add_survey", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
         "Authorization" : `Bearer ${token}`,
       },
-      body: data,
+      body: survey,
     });
     const response = await res.json();
+    alert(response.message);
   };
 
 
