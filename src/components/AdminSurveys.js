@@ -6,10 +6,10 @@ function AdminSurveys({surveys}){
     return(
         <div className="surveys-container page-content">
         
-            {surveys.map(survey=>(
-                <>
+            {surveys.map((survey, i)=>(
+                <div key={i}>
                 <AdminSurvey survey={survey} surveyID={surveyID} setSurveyID={setSurveyID}/>
-                </>
+                </div>
             ))}
         </div>
     )

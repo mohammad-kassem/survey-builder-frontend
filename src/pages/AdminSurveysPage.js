@@ -58,7 +58,7 @@ function AdminSurveysPage({surveys}){
         <>
         <div className="survey-container page-content">
             <AddHeader showAddSurvey={showAddSurvey} setShowAddSurvey={()=>{setShowAddSurvey(!showAddSurvey)}} question={question} setQuestion={setQuestion} setDetails={setDetails}/>
-            {questions.length != [] && (showSubmitSurvey && <AdminSurvey survey={survey} toSubmit={true} addSurvey={addSurvey}/>)}
+            {questions.length != [] && (showSubmitSurvey && <AdminSurvey survey={survey} toSubmit={true} addSurvey={addSurvey} getResponseOnClick={false}/>)}
         </div>
         <>
             <AdminSurveys surveys={surveys}/>

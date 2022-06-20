@@ -9,8 +9,8 @@ function Dropdown({question, options, answers, addAnswer}){
         <label>{question.text}</label>
         <select id={"question" + question.id} onChange={function(e){
                 setInput(e.target.value);let obj = {}; obj[e.target.id.replace( /^\D+/g, '')] = e.target.value; addAnswer(obj)}}>
-        {options.map(option=>(
-            <option value={option.option} 
+        {options.map((option, i)=>(
+            <option key={i} value={option.option} 
             >{option.option}</option>
         ))
         }

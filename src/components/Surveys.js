@@ -6,10 +6,10 @@ function Surveys({surveys}){
     return(
         <div className="surveys-container page-content">
         
-            {surveys.map(survey=>(
-                <>
+            {surveys.map((survey, i)=>(
+                <div key={i}>
                 <Survey survey={survey} surveyID={surveyID} setSurveyID={setSurveyID}/>
-                </>
+                </div>
             ))}
         </div>
     )

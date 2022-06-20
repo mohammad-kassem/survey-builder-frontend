@@ -41,8 +41,8 @@ function NewQuestion({question, setQuestion}){
         <input type="text" id="question-text" value={text} placeholder="text" required onChange={function(e){setText(e.target.value)}}></input>
         <select id={"new-question"} required onChange={function(e){setType(e.target.value);}}>
         <option value="">Please select</option>
-        {q_options.map(q_option=>(
-            <option value={q_option}>{q_option}</option>
+        {q_options.map((q_option, i)=>(
+            <option key={i} value={q_option}>{q_option}</option>
         ))
         }
         
@@ -52,7 +52,7 @@ function NewQuestion({question, setQuestion}){
         <input type="number" value={optionsCount} onChange={function(e) {setOptionsCount(Number(e.target.value))}}></input>
             
             {options.map((option, index) =>(
-                <input type="text" value={option} required onChange={(e)=>handleText(index, e)}>
+                <input key={index} type="text" value={option} required onChange={(e)=>handleText(index, e)}>
                 </input>))}
             </>}
                 {/* <input type="number" value={optionsCount} onChange={function(e) {setOptionsCount(e.target.value)}}></input>
