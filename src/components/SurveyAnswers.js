@@ -11,18 +11,18 @@ function SurveyAnswers({survey, setSurveyID}){
         <div id={survey.id} onClick={(e)=>{setSurveyID(e.target.id)}}>
         <SurveyHeader survey={survey}/>
         <div className="survey-container">
-        {questions.map((question)=>
-        <>
+        {questions.map((question, i)=>
+        <div key={i}>
             <>
             {<Answer question={question}/>}
             </>
             <div className="answers-container">
-            {question.answers.map((answer)=>
-                <div className="answer">
+            {question.answers.map((answer, j)=>
+                <div key={j} className="answer">
                     <p>user id {answer.user_id} : {answer.value}</p>
                 </div>)}
             </div>
-        </>
+        </div>
         )}
         </div>
         </div>

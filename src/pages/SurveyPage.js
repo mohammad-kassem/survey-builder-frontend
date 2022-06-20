@@ -60,7 +60,7 @@ function SurveyPage(){
     return(
     <div className="survey-container page-content">
 
-        <Survey survey={survey} answers={answers} addAnswer={addAnswer} user={true}  addResponse={addResponse}/>
+        <Survey survey={survey} answers={answers} addAnswer={addAnswer} user={true}  addResponse={addResponse} getResponseOnClick={false}/>
     </div>
     )
 }

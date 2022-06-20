@@ -13,12 +13,12 @@ import Image from ".//Image";
 import SurveyHeader from "./SurveyHeader";
 
 
-function Survey({survey, toSubmit, addSurvey, user,surveyID, setSurveyID, answers, addAnswer, addResponse}){
+function Survey({survey, toSubmit, addSurvey, user,surveyID, setSurveyID, answers, addAnswer, addResponse, getResponseOnClick}){
     let questions = survey.questions;
     const navigate = useNavigate();
 
     return(
-        <div id={survey.id} onClick={(e)=>{{setSurveyID(e.target.id); navigate('/survey_respond',{replace: false, state: {survey:survey}})}}}>
+        <div id={survey.id} onClick={(e)=>{{getResponseOnClick && setSurveyID(e.target.id)}; {getResponseOnClick && navigate('/survey_respond',{replace: false, state: {survey:survey}})}}}>
         <SurveyHeader survey={survey}/>
         <form className="survey-container" onSubmit={(e)=>{e.preventDefault(); addResponse(answers)}}>
         {questions.map((question, i)=>
@@ -40,6 +40,10 @@ function Survey({survey, toSubmit, addSurvey, user,surveyID, setSurveyID, answer
         </form>
         </div>
     )
+}
+
+Survey.defaultProps = {
+    getResponseOnClick: true 
 }
 
 export default Survey;
