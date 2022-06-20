@@ -3,6 +3,7 @@ import AddHeader from "../components/AddHeader";
 import Footer from "../components/Footer";
 import Survey from "../components/Survey";
 import Surveys from "../components/Surveys";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 
 
 
@@ -15,6 +16,8 @@ function SurveysPage({surveys}){
     const firstUpdate = useRef(true);
     console.log(details);
 
+    const navigate = useNavigate();
+
     let survey = {...details, questions:questions};
     console.log(JSON.stringify(survey));
     console.log(questions);
@@ -22,6 +25,8 @@ function SurveysPage({surveys}){
     //add survey
     async function addSurvey(selectedsurvey) {
     console.log(JSON.stringify(survey));
+    let token = localStorage.getItem("token");
+    if (!token) navigate("/login");
     let data = new FormData();
     data.append("survey", survey);
     console.log(data);
@@ -29,6 +34,7 @@ function SurveysPage({surveys}){
       method: "POST",
       headers: {
         "Content-type": "application/json",
+        "Authorization" : `Bearer ${token}`,
       },
       body: data,
     });

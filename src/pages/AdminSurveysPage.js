@@ -3,6 +3,8 @@ import AddHeader from "../components/AddHeader";
 import Footer from "../components/Footer";
 import AdminSurvey from "../components/AdminSurvey";
 import AdminSurveys from "../components/AdminSurveys";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+
 
 
 
@@ -14,6 +16,9 @@ function AdminSurveysPage({surveys}){
     const [details, setDetails] = useState({});
     const firstUpdate = useRef(true);
 
+    const navigate = useNavigate();
+
+
     let survey = {...details, questions:questions};
     console.log(JSON.stringify(survey));
     console.log(questions);
@@ -21,6 +26,8 @@ function AdminSurveysPage({surveys}){
     //add survey
     async function addSurvey() {
     console.log(JSON.stringify(survey));
+    let token = localStorage.getItem("token");
+    if (!token) navigate("/login");
     let data = new FormData();
     data.append("survey", survey);
     console.log(data);
@@ -28,6 +35,7 @@ function AdminSurveysPage({surveys}){
       method: "POST",
       headers: {
         "Content-type": "application/json",
+        "Authorization" : `Bearer ${token}`,
       },
       body: data,
     });

@@ -17,13 +17,15 @@ function AddHeader({showAddSurvey, setShowAddSurvey, question, setQuestion, setD
     }
 
     return(
-        <>
+        <>  
+            <div className="flex-container">
             <h2> Add Survey</h2>
             {!showAddQuestion && <Button
                 color = {showAddSurvey ? "red" : "green"}
-                text = {showAddSurvey ? "Cancel" : "Save"}
+                text = {showAddSurvey ? "Cancel" : "Add"}
                 onClick={setShowAddSurvey}
             />}
+            </div>
             {showAddSurvey && <SurveyDetails title={title} description={description} setTitle={setTitle} setDescription={setDescription} detailsHandler={detailsHandler} setShowAddQuestion={setShowAddQuestion}/>}
             {showAddQuestion && <AddQuestion showAddQuestion={showAddQuestion} setShowAddSurvey={()=>{setShowAddQuestion(!showAddQuestion)}}/>}
             {showAddQuestion && <NewQuestion question={question} setQuestion={setQuestion}/>}

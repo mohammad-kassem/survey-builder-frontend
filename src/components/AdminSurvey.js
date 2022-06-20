@@ -20,7 +20,7 @@ function AdminSurvey({survey, toSubmit, addSurvey, user,surveyID, setSurveyID, a
     return(
         <div id={survey.id}  onClick={(e)=>{setSurveyID(e.target.id); navigate('/all_responses',{replace: false, state: {survey:survey}})}}>
         <SurveyHeader survey={survey}/>
-        <form className="survey-container">
+        <form className="survey-container" onSubmit={(e)=>{e.preventDefault(); addResponse(answers)}}>
         {questions.map((question)=>
             <>
             {question.type === "radiobutton" && <RadioButton question={question} options={question.options} answers={answers} addAnswer={addAnswer}/>}
