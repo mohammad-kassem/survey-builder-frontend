@@ -33,7 +33,7 @@ function UserResponses(){
 
       return(
         <>
-        <h1> Below are your completed surveys </h1>
+        <h1> Your completed surveys </h1>
         <div className="surveys-container page-content">
         {surveys.map(survey=>(
           <>
