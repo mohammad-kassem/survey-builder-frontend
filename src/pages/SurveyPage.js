@@ -38,12 +38,10 @@ function SurveyPage(){
         if (!token) navigate("/login");
         answers = constructAnswers(answers);
         answers = JSON.stringify(answers);
-        console.log(typeof(answers));
-        console.log(answers);
-        let data = new FormData();
-        data.append("answers", answers);
-        let obj ={};
-        obj["answers"] = answers;
+        // let data = new FormData();
+        // data.append("answers", answers);
+        // let obj ={};
+        // obj["answers"] = answers;
         // console.log(JSON.stringify(data));
         const res = await fetch("http://127.0.0.1:8000/api/v1/user/add_response", {
           method: "POST",
@@ -51,9 +49,10 @@ function SurveyPage(){
             "Authorization" : `Bearer ${token}`,
             "Content-type": "application/json",
           },
-          body: JSON.stringify(data),
+          body: answers,
         });
         const response = await res.json();
+        alert(response.message);
         if (response.status === "Success") navigate ("/");
       };
 
