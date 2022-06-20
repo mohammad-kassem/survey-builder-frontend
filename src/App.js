@@ -32,7 +32,7 @@ function App() {
   //Fetch All Surveys from Backend
   async function fetchSurveys(){
     let token = localStorage.getItem("token");
-    if (!token) navigate("/login");
+    if (!token) navigate ("/login");
     try {
       const res = await fetch("http://127.0.0.1:8000/api/v1/admin/get_surveys",{
         headers: {"Authorization" : `Bearer ${token}`}
